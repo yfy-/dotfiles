@@ -1,0 +1,30 @@
+[general]
+import = ["~/.config/alacritty/themes/modus_vivendi.toml"]
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "Berkeley Mono"
+
+[font.bold_italic]
+family = "Berkeley Mono"
+
+[font.italic]
+family = "Berkeley Mono"
+
+[font.normal]
+family = "Berkeley Mono"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001F"
+key = "Slash"
+mods = "Control"
+
+[window]
+option_as_alt = "Both"
