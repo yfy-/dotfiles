@@ -1,0 +1,40 @@
+(defcfg
+  input  (device-file "/dev/input/by-id/usb-PFU_Limited_HHKB-Hybrid-event-kbd")
+  output (uinput-sink "kmonad-virtual")
+
+  ;; For MacOS
+  ;; input  (iokit-name "my-keyboard-product-string")
+  ;; output (kext)
+
+  fallthrough true
+  )
+
+(defalias
+    sfn (tap-hold 200 spc (layer-toggle spacefn))
+  )
+
+;; Source layout: replace “…” with your full HHKB source rows
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet cmp  rctl
+)
+
+;; Base layer: mirror defsrc, use @spc for SpaceFn/
+(deflayer base
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _           @sfn              _    _    _    _
+  )
+
+(deflayer spacefn
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _  S-[  S-]    _    \    -  S-=    _    _    _    _    _
+  _    _    _  S-9  S-0 bspc  S-\    =  S--    `    _    _    _
+  _    _    _    [    ]    _  S-`  S-'    '    _    _    _
+  _    _    _              _              _    _    _    _
+)
